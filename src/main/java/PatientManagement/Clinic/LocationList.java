@@ -24,10 +24,22 @@ public class LocationList {
         return l;
     }
 
-    public Location newLocation(String name) {
-        Location newLoc = new Location(name);
+    public Location newLocation(String name, boolean hasPsychologicalCounseling, boolean hasRehabilitationCenter) {
+        Location newLoc = new Location(name, hasPsychologicalCounseling, hasRehabilitationCenter);
         locations.add(newLoc);
         return newLoc;
     }
-
-}
+    
+    public void newLocation(Location location) {
+        locations.add(location);
+    }
+    
+    public boolean hasServices(String locname, String serviceType) {
+        for (Location location : locations) {
+            if (location.getLocation().equals(locname)) {
+                return location.hasServices(serviceType);
+            }
+        }
+        return false;
+    }
+    }

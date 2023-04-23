@@ -1,8 +1,8 @@
 package PatientManagement.Catalogs;
 
 public class Limits {
-    int upper;
-    int lower;
+    public int upper;
+    public int lower;
 
     public Limits(int u, int l) {
         upper = u;
@@ -10,7 +10,7 @@ public class Limits {
     }
 
     public Boolean isWithinLimits(int value) {
-        if ((value >= upper) || (value <= lower))
+        if ((value > upper) || (value < lower))
             return false;
         return true;
     }

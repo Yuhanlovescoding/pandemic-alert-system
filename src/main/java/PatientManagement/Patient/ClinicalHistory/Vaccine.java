@@ -10,5 +10,13 @@ package PatientManagement.Patient.ClinicalHistory;
  * @author kal bugrara
  */
 public class Vaccine {
+    String name;
 
+    public Vaccine(String n) {
+        name = n;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

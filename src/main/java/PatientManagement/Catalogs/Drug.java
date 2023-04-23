@@ -16,4 +16,8 @@ public class Drug {
         name = n;
     }
 
+    public String getName() {
+        return name;
+    }
+
 }

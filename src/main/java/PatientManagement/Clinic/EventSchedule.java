@@ -20,9 +20,9 @@ public class EventSchedule {
         scheduledevents = new ArrayList<Event>();
     }
 
-    public Event newEvent(Site s, String budgetnumer) {
+    public Event newEvent(Location l, String budgetnumer) {
 
-        Event newevent = new Event(s, budgetnumer);
+        Event newevent = new Event(l, budgetnumer);
         scheduledevents.add(newevent);
         return newevent;
     }

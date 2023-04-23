@@ -5,6 +5,7 @@
  */
 package PatientManagement.Patient;
 
+import PatientManagement.Catalogs.Drug;
 import PatientManagement.Catalogs.Limits;
 import PatientManagement.Catalogs.VitalSignsCatalog;
 import PatientManagement.Clinic.Clinic;
@@ -12,11 +13,15 @@ import PatientManagement.Clinic.Event;
 import PatientManagement.Clinic.PatientDirectory;
 import PatientManagement.Patient.ClinicalHistory.AlergyHistory;
 import PatientManagement.Patient.ClinicalHistory.VaccinationHistory;
+import PatientManagement.Patient.ClinicalHistory.Vaccine;
 import PatientManagement.Patient.Encounters.Diagnosis;
 import PatientManagement.Patient.Encounters.Encounter;
 import PatientManagement.Patient.Encounters.EncounterHistory;
 import PatientManagement.Persona.Person;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Date;
 
 /**
  *
@@ -25,14 +30,45 @@ import java.util.ArrayList;
 public class Patient {
     Clinic clinic;
     EncounterHistory encounterhistory;
-    VaccinationHistory vachistory;
     Person person;
     AlergyHistory alergyhistory;
+    Drug drug;
+    private ArrayList<VaccinationHistory> vaccinationHistory;
+
+    private static Map<String, Integer> locationInfectedCount = new HashMap<>();
+
 
     public Patient(Person p, Clinic clinic) {
         encounterhistory = new EncounterHistory(this); // link this patient object back
         person = p;
         this.clinic = clinic;
+        vaccinationHistory = new ArrayList<>();
+    }
+
+    public ArrayList<VaccinationHistory> getVaccinationHistory() {
+        return vaccinationHistory;
+    }
+
+    public void addVaccinationHistory(Vaccine vaccine, String date) {
+        VaccinationHistory record = new VaccinationHistory(vaccine, date);
+        vaccinationHistory.add(record);
+    }
+
+    
+
+    public boolean hasReceivedVaccine(String vaccineName) {
+        for (VaccinationHistory record : vaccinationHistory) {
+            if (record.getVaccine().getName().equals(vaccineName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    
+
+    public void setDrug(Drug drug) {
+        this.drug = drug;
     }
 
     public EncounterHistory getEncounterHistory() {
@@ -77,4 +113,23 @@ public class Patient {
         return clinic;
     }
 
+    public void updateLocationInfectedCount(String locationName) {
+        Integer count = locationInfectedCount.get(locationName);
+        if (count == null) {
+            count = 0;
+        }
+        locationInfectedCount.put(locationName, count + 1);
+    }
+
+    
+    public static Map<String, Integer> getLocationInfectedCount() {
+        return locationInfectedCount;
+    }
+
+    public void setVaccine(String string) {
+    }
+
+    
+
+    
 }

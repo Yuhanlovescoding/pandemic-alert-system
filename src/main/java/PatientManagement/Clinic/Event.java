@@ -15,13 +15,13 @@ import java.util.ArrayList;
 public class Event {
 
     String date;
-    Site site;
+    Location location;
     String budgetcode;
 
     ArrayList<Encounter> encounters; // encounters that day
 
-    public Event(Site s, String bc) {
-        site = s;
+    public Event(Location l, String bc) {
+        location = l;
         budgetcode = bc;
         date = "2022/02/27";
         encounters = new ArrayList<Encounter>(); // encounters done at the event/site

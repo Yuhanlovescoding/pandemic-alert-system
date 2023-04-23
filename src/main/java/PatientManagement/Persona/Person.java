@@ -1,5 +1,6 @@
 package PatientManagement.Persona;
 
+import PatientManagement.Clinic.Location;
 import PatientManagement.Patient.Patient;
 import java.util.ArrayList;
 
@@ -18,13 +19,21 @@ public class Person {
     String id;
     Person mother;
     Person father;
-    ArrayList<Person> siblings;
+    ArrayList<Person> friends;
     Patient patient;
     int age;
+    Location location;
 
     public Person(String id, int a) {
         this.id = id;
-        siblings = new ArrayList<Person>();
+        friends = new ArrayList<Person>();
+        age = a;
+    }
+
+    public Person(String id, int a, Location location) {
+        this.id = id;
+        this.location = location;
+        friends = new ArrayList<Person>();
         age = a;
     }
 
@@ -41,9 +50,9 @@ public class Person {
     }
 
     public void addSibling(Person s) {
-        if (siblings.contains(s))
+        if (friends.contains(s))
             return; // sibling already in the arraylist
-        siblings.add(s);
+        friends.add(s);
     }
 
     public boolean isMatch(String id) {
@@ -54,5 +63,10 @@ public class Person {
 
     public int getAge() {
         return age;
+    }
+
+
+    public String getLocation() {
+        return location.getLocation();
     }
 }

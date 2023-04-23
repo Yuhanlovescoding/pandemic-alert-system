@@ -6,17 +6,30 @@
 package PatientManagement.Patient.ClinicalHistory;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
  * @author kal bugrara
  */
 public class VaccinationHistory {
+    private Vaccine vaccine;
+    private String date;
+    // ArrayList<Vaccine> vaccines;
 
-    ArrayList<Vaccination> vaccinations;
-
-    public void addVaccination(Vaccination v) {
-        vaccinations.add(v);
+    // public void addvaccine(Vaccine v) {
+    //     vaccines.add(v);
+    // }
+    public VaccinationHistory(Vaccine vaccine, String date) {
+        this.vaccine = vaccine;
+        this.date = date;
+    }
+    public Vaccine getVaccine() {
+        return vaccine;
     }
 
+    public String getDate() {
+        return date;
+    }
+    
 }

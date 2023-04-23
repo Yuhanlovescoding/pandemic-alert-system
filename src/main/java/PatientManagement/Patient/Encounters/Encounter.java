@@ -5,6 +5,9 @@
  */
 package PatientManagement.Patient.Encounters;
 
+import java.util.List;
+
+import PatientManagement.Catalogs.Drug;
 import PatientManagement.Catalogs.Limits;
 import PatientManagement.Catalogs.VitalSignsCatalog;
 import PatientManagement.Clinic.Clinic;
@@ -28,6 +31,7 @@ public class Encounter {
     EncounterHistory encounterHistory;
     // vital signs
     // orders: assessmentorders, ....
+    public char[] performCovidTestResult;
 
     public Encounter(Patient p, String cc, Event ev, EncounterHistory eh) { // event is the date when the check was made
         chiefComplaint = cc;
@@ -55,11 +59,26 @@ public class Encounter {
         return vitalSigns.addNewVitals(name, value);
     }
 
+    public void add3NewVitals(String name, int value,
+    String name2, int value2, String name3, int value3) {
+        vitalSigns.addNewVitals(name, value);
+        vitalSigns.addNewVitals(name2, value2);
+        vitalSigns.addNewVitals(name3, value3);
+    }
+
     public EncounterHistory getEncounterHistory() {
         return encounterHistory;
     }
 
-    public boolean areVitalsNormal() {
+    public String areVitalsNormal() {
         return vitalSigns.areNormal();
+    }
+
+    public String performCovidTestResult() {
+        return vitalSigns.performCovidTest();
+    }
+
+    public String getPrescribeMedication() {
+        return vitalSigns.prescribeMedication();
     }
 }

@@ -7,6 +7,9 @@ package PatientManagement.Persona;
  */
 
 import java.util.ArrayList;
+import java.util.Random;
+
+import PatientManagement.Clinic.Location;
 
 /**
  *
@@ -34,5 +37,22 @@ public class PersonDirectory {
             }
         }
         return null; // not found after going through the whole list
+    }
+
+    public Person newPersonY(String id, Location location) {
+        Random random = new Random();
+        int ageGroupY = random.nextInt(18, 50);
+        Person p = new Person(id, ageGroupY, location);
+        personlist.add(p);
+        return p;
+    }
+
+
+    public void printPerson() {
+        for (Person p : personlist) {
+            System.out.println(p.getPersonId() 
+            +": Age: "+ p.getAge() 
+            + ", Location: " +p.getLocation());
+        }
     }
 }

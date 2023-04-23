@@ -5,6 +5,8 @@
  */
 package PatientManagement.Clinic;
 
+
+
 import PatientManagement.Catalogs.DrugCatalog;
 import PatientManagement.Catalogs.VitalSignsCatalog;
 import PatientManagement.Persona.PersonDirectory;
@@ -22,30 +24,29 @@ public class Clinic {
     EventSchedule eventschedule;
     VitalSignsCatalog vitalSignsCatalog;
     String name; // name of the clinic
-
+       
+    
+    
     public Clinic(String n) {
         eventschedule = new EventSchedule();
-        sitelist = new SiteCatalog();
         locationlist = new LocationList();
         persondirectory = new PersonDirectory();
         patientdirectory = new PatientDirectory(this);
         vitalSignsCatalog = new VitalSignsCatalog();
+        drugcatalog = new DrugCatalog();
         name = n;
+
     }
 
-    public SiteCatalog getSiteCatalog() {
-        return sitelist;
+    public DrugCatalog getDrugcatalog() {
+        return drugcatalog;
     }
+
 
     public LocationList getLocationList() {
         return locationlist;
     }
 
-    public Site newSite(Location location) {
-
-        Site s = sitelist.newSite(location);
-        return s;
-    }
 
     public VitalSignsCatalog getVitalSignsCatalog() {
         return vitalSignsCatalog;
@@ -58,4 +59,26 @@ public class Clinic {
     public PatientDirectory getPatientDirectory() {
         return patientdirectory;
     }
+
+    
+    
+   
+    public boolean checkServices(String locname) {
+        boolean hasPsychologicalCounseling = locationlist.hasServices(locname, "Psychological Counseling");
+        boolean hasRehabilitationCenter = locationlist.hasServices(locname, "Rehabilitation Center");
+        if (hasPsychologicalCounseling && hasRehabilitationCenter) {
+            System.out.println(locname + " supports psychological counseling and rehabilitation center services");
+            return true;
+        } else if (hasPsychologicalCounseling) {
+            System.out.println(locname + " supports psychological counseling services, but does not support rehabilitation center services");
+            return false;
+        } else if (hasRehabilitationCenter){
+            System.out.println(locname + " supports rehabilitation center services, but does not support psychological counseling services");
+            return false;
+        } else {
+            System.out.println(locname + " does not support psychological counseling or rehabilitation center services");
+            return false;
+        }
+    }
+
 }

@@ -16,7 +16,27 @@ public class VitalSignMetric {
         value = v;
     }
 
+    
+
     public Boolean isNormal() {
         return upperLower.isWithinLimits(value);
     }
+
+
+    public String getNormalStatus() {
+        if (upperLower.isWithinLimits(value)) {
+            return "Yes, The patient's vital signs are normal.";
+        } else if (value < upperLower.lower) {
+            return name + " is too low (" + value + ")";
+        } else {
+            return name + " is too high (" + value + ")";
+        }
+    }
+
+
+
+    public int getValue() {
+        return value;
+    }
+    
 }
